@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./src/output.css" rel="stylesheet">
+  <link href="./node_modules/vanilla-calendar-pro/build/vanilla-calendar.min.css" rel="stylesheet">
+  <script src="./node_modules/vanilla-calendar-pro/build/vanilla-calendar.min.js" defer></script>
+</head>
+<body>
+
+ <button class="btn" onclick="my_modal_3.showModal()">open modal</button>
+<dialog id="my_modal_3" class="modal">
+  <div class="modal-box">
+    <form method="dialog">
+      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+    </form>
+    <h3 class="text-lg font-bold">Hello!</h3>
+    <p class="py-4">Press ESC key or click on ✕ button to close</p>
+    <input id="calendar-input" type="text" class="input input-bordered w-full" readonly>
+  </div>
+</dialog> 
+
+
+
+<script type="module" src="./script.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "vanillacalender",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "build": "npx tailwindcss -i ./styles.css -o ./src/output.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "daisyui": "^4.12.10",
+    "typescript": "^5.5.3"
+  },
+  "dependencies": {
+    "vanilla-calendar-pro": "^2.9.6"
+  }
+}
