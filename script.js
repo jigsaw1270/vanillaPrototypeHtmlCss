@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
       clickDay(e, dates) {
         console.log(dates)
         let selectedDate = dates.selectedDates;
-        document.getElementById('selected-date').textContent = `Selected date: ${selectedDate}`;
+        document.getElementById('selected-date').textContent = `Selected date: ${selectedDate[0]} to ${selectedDate[selectedDate.length - 1]}`;
         document.getElementById('my_modal_2').close(); 
       }
     }
