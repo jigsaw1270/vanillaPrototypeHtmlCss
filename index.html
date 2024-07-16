@@ -1,4 +1,4 @@
-<!doctype html>
+<!-- <!doctype html>
 <html>
 <head>
   <meta charset="UTF-8">
@@ -9,7 +9,7 @@
 </head>
 <body>
 
- <!-- <button class="btn" onclick="my_modal_3.showModal()">open modal</button> -->
+
  <button class="btn" onclick="openModal()">open modal</button>
 <dialog id="my_modal_3" class="modal">
   <div class="modal-box">
@@ -18,11 +18,10 @@
     </form>
     <h3 class="text-lg font-bold">Hello!</h3>
     <p class="py-4">Press ESC key or click on ✕ button to close</p>
-    <input id="calendar-input" type="text" class="input input-bordered w-full z-[1000]" readonly>
+    <input id="calendar-input" type="text" class="input input-bordered w-full" readonly>
   </div>
 </dialog> 
 
-<!-- <input id="calendar-input" type="text" class="input input-bordered w-1/2" readonly> -->
 
 
 
@@ -32,5 +31,46 @@
     document.getElementById('my_modal_3').classList.add('modal-open');
   }
 </script>
+</body>
+</html> -->
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./src/output.css" rel="stylesheet">
+  <link href="./node_modules/vanilla-calendar-pro/build/vanilla-calendar.min.css" rel="stylesheet">
+  <script src="./node_modules/vanilla-calendar-pro/build/vanilla-calendar.min.js" defer></script>
+</head>
+<body>
+  <button class="btn" onclick="document.getElementById('my_modal_1').showModal()">Open Main Modal</button>
+
+  <dialog id="my_modal_1" class="modal">
+    <div class="modal-box">
+      <form method="dialog">
+        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+      </form>
+      <h3 class="text-lg font-bold">Book your date</h3>
+    
+      <button class="btn"  onclick="document.getElementById('my_modal_2').showModal()">Choose date</button>
+      <p id="selected-date" class="py-4">No date selected</p>
+
+    </div>
+  </dialog>
+
+  <dialog id="my_modal_2" class="modal">
+    <div class="modal-box">
+      <form method="dialog">
+        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+      </form>
+      <h3 class="text-lg font-bold">Calendar Modal</h3>
+      <p class="py-4">Select dates from the calendar below:</p>
+     
+   
+      <div id="calendar"></div>
+    </div>
+  </dialog>
+
+  <script type="module" src="./script.js"></script>
 </body>
 </html>
