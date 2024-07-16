@@ -9,7 +9,8 @@
 </head>
 <body>
 
- <button class="btn" onclick="my_modal_3.showModal()">open modal</button>
+ <!-- <button class="btn" onclick="my_modal_3.showModal()">open modal</button> -->
+ <button class="btn" onclick="openModal()">open modal</button>
 <dialog id="my_modal_3" class="modal">
   <div class="modal-box">
     <form method="dialog">
@@ -17,12 +18,19 @@
     </form>
     <h3 class="text-lg font-bold">Hello!</h3>
     <p class="py-4">Press ESC key or click on ✕ button to close</p>
-    <input id="calendar-input" type="text" class="input input-bordered w-full" readonly>
+    <input id="calendar-input" type="text" class="input input-bordered w-full z-[1000]" readonly>
   </div>
 </dialog> 
+
+<!-- <input id="calendar-input" type="text" class="input input-bordered w-1/2" readonly> -->
 
 
 
 <script type="module" src="./script.js"></script>
+<script>
+  function openModal() {
+    document.getElementById('my_modal_3').classList.add('modal-open');
+  }
+</script>
 </body>
 </html>

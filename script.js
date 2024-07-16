@@ -34,3 +34,5 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('Calendar initialized');
   });
 
+  
+
