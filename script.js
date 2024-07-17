@@ -1,52 +1,14 @@
-// document.addEventListener('DOMContentLoaded', function() {
-//     const options = {
-//       input: true,
-//       type: 'multiple',
-//       settings: {
-//         range: {
-//           disablePast: true,
-//         },
-//         selection: {
-//           day: 'multiple-ranged',
-//         },
-//         visibility: {
-//           daysOutside: true,
-//         },
-//       },
-//       actions: {
-//         changeToInput(e, self) {
-//           if (!self.HTMLInputElement) return;
-//           if (self.selectedDates[1]) {
-//             self.selectedDates.sort((a, b) => +new Date(a) - +new Date(b));
-//             self.HTMLInputElement.value = `${self.selectedDates[0]} — ${self.selectedDates[self.selectedDates.length - 1]}`;
-//           } else if (self.selectedDates[0]) {
-//             self.HTMLInputElement.value = self.selectedDates[0];
-//           } else {
-//             self.HTMLInputElement.value = '';
-//           }
-//         },
-//       },
-//     };
-  
-//     const calendarInput = new VanillaCalendar('#calendar-input', options);
-//     console.log('Calendar instance created');
-//     calendarInput.init();
-//     console.log('Calendar initialized');
-//   });
-
-
-
-// document.addEventListener('DOMContentLoaded', function() {
- 
-//   const calendar = new VanillaCalendar('#calendar');
-// calendar.init();
+// 
 
 document.addEventListener('DOMContentLoaded', function() {
+  let selectedDates = [];
+
   const calendar = new VanillaCalendar('#calendar', {
     type: 'multiple',
     settings: {
       range: {
         disablePast: true,
+        disableGap : true,
       },
       selection: {
         day: 'multiple-ranged',
@@ -57,110 +19,47 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     actions: {
       clickDay(e, dates) {
-        console.log(dates)
-        let selectedDate = dates.selectedDates;
-        document.getElementById('selected-date').textContent = `Selected date: ${selectedDate[0]} to ${selectedDate[selectedDate.length - 1]}`;
-        document.getElementById('my_modal_2').close(); 
+        selectedDates = dates.selectedDates;
+        console.log(selectedDates);
+      },  
+      getDays(day, date, HTMLElement, HTMLButtonElement, self) {
+        const currentDate = new Date(date);
+        const month = currentDate.getMonth();
+        const year = currentDate.getFullYear();
+  
+        const lastDayOfMonth = new Date(year, month + 1, 0);
+        const daysInMonth = lastDayOfMonth.getDate();
+        let saturdays = [];
+        let sundays = [];
+  
+        for (let d = daysInMonth; d > 0; d--) {
+          const checkDate = new Date(year, month, d);
+          if (checkDate.getDay() === 6 && saturdays.length < 2) {
+            saturdays.push(d);
+          } else if (checkDate.getDay() === 0 && sundays.length < 2) {
+            sundays.push(d);
+          }
+        }
+  
+        if (saturdays.includes(currentDate.getDate()) || sundays.includes(currentDate.getDate())) {
+          HTMLButtonElement.style.flexDirection = 'column';
+          HTMLButtonElement.innerHTML += `
+            <span style="font-size: 11px;color: #FF5722;">Deal!</span>
+          `;
+        }
+   
       }
     }
   });
   calendar.init();
+
+
+  document.getElementById('select-dates-btn').addEventListener('click', function() {
+    if (selectedDates.length > 0) {
+      document.getElementById('selected-date').textContent = `Selected date: ${selectedDates[0]} to ${selectedDates[selectedDates.length - 1]}`;
+    } else {
+      document.getElementById('selected-date').textContent = 'No date selected';
+    }
+    document.getElementById('my_modal_5').close();
+  });
 });
-// document.addEventListener('DOMContentLoaded', function() {
-//   const options = {
-//     input: true,
-//     type: 'multiple',
-//     settings: {
-//       range: {
-//         disablePast: true,
-//       },
-//       selection: {
-//         day: 'multiple-ranged',
-//       },
-//       visibility: {
-//         daysOutside: false,
-//       },
-//     },
-//     actions: {
-//       changeToInput(e, self) {
-//         if (!self.HTMLInputElement) return;
-//         if (self.selectedDates[1]) {
-//           self.selectedDates.sort((a, b) => +new Date(a) - +new Date(b));
-//           self.HTMLInputElement.value = `${self.selectedDates[0]} — ${self.selectedDates[self.selectedDates.length - 1]}`;
-//         } else if (self.selectedDates[0]) {
-//           self.HTMLInputElement.value = self.selectedDates[0];
-//         } else {
-//           self.HTMLInputElement.value = '';
-//         }
-
-//         // Update the first modal with the selected date(s)
-//         document.getElementById('selected-date').textContent = `Selected date(s): ${self.HTMLInputElement.value}`;
-//       },
-//     },
-//   };
-
-//   const calendarInput = new VanillaCalendar('#calendar', options);
-//   document.getElementById('my_modal_2').close(); 
-//   calendarInput.init();
-
-//   // Close the second modal when a date is selected
-//   // document.getElementById('calendar-input').addEventListener('change', () => {
-//   //   document.getElementById('my_modal_2').close();
-//   // });
-// });
-
-
-
-  // const options = {
-  //   type: 'multiple',
-  //   settings: {
-  //     range: {
-  //       disablePast: true,
-  //     },
-  //     selection: {
-  //       day: 'multiple-ranged',
-  //     },
-  //     visibility: {
-  //       daysOutside: true,
-  //     },
-  //   },
-  //   actions: {
-  //     changeToInput(e, self) {
-  //       // const inputElement = document.getElementById('calendar-trigger');
-  //       if (self.selectedDates[1]) {
-  //         self.selectedDates.sort((a, b) => +new Date(a) - +new Date(b));
-  //         inputElement.value = `${self.selectedDates[0]} — ${self.selectedDates[self.selectedDates.length - 1]}`;
-  //       } else if (self.selectedDates[0]) {
-  //         inputElement.value = self.selectedDates[0];
-  //       } else {
-  //         inputElement.value = '';
-  //       }
-  //     },
-  //   },
-  // };
-  // const calendarInput = new VanillaCalendar('#calendar-trigger', options);
-  //     console.log('Calendar instance created');
-  //     calendarInput.init();
-  //     console.log('Calendar initialized');
-
-  // const calendarModal = document.getElementById('my_modal_2');
-  // const calendarContainer = document.getElementById('calendar-container');
-
-  // calendarModal.addEventListener('showModal', function() {
-  //   if (!calendarContainer.vanillaCalendar) {
-  //     const calendar = new VanillaCalendar(calendarContainer, options);
-  //     console.log('Calendar instance created');
-  //     calendar.init();
-  //     console.log('Calendar initialized');
-  //     calendarContainer.vanillaCalendar = calendar;
-  //   }
-  // });
-
-  // calendarModal.addEventListener('close', function() {
-  //   if (calendarContainer.vanillaCalendar) {
-  //     calendarContainer.vanillaCalendar.destroy();
-  //     delete calendarContainer.vanillaCalendar;
-  //     calendarContainer.innerHTML = '';
-  //   }
-  // });
-

@@ -14,11 +14,11 @@
 <dialog id="my_modal_3" class="modal">
   <div class="modal-box">
     <form method="dialog">
-      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+      <button class="absolute btn btn-sm btn-circle btn-ghost right-2 top-2">✕</button>
     </form>
     <h3 class="text-lg font-bold">Hello!</h3>
     <p class="py-4">Press ESC key or click on ✕ button to close</p>
-    <input id="calendar-input" type="text" class="input input-bordered w-full" readonly>
+    <input id="calendar-input" type="text" class="w-full input input-bordered" readonly>
   </div>
 </dialog> 
 
@@ -48,26 +48,27 @@
   <dialog id="my_modal_1" class="modal">
     <div class="modal-box">
       <form method="dialog">
-        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+        <button class="absolute btn btn-sm btn-circle btn-ghost right-2 top-2">✕</button>
       </form>
       <h3 class="text-lg font-bold">Book your date</h3>
     
-      <button class="btn"  onclick="document.getElementById('my_modal_2').showModal()">Choose date</button>
+      <button class="btn"  onclick="document.getElementById('my_modal_5').showModal()">Choose date</button>
       <p id="selected-date" class="py-4">No date selected</p>
 
     </div>
   </dialog>
 
-  <dialog id="my_modal_2" class="modal">
+  <dialog id="my_modal_5" class="modal">
     <div class="modal-box">
       <form method="dialog">
-        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+        <button class="absolute btn btn-sm btn-circle btn-ghost right-2 top-2">✕</button>
       </form>
       <h3 class="text-lg font-bold">Calendar Modal</h3>
       <p class="py-4">Select dates from the calendar below:</p>
      
    
       <div id="calendar"></div>
+      <button id="select-dates-btn" class="m-3 btn">Confirm</button>
     </div>
   </dialog>
 
