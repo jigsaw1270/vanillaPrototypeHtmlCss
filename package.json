@@ -14,6 +14,6 @@
     "typescript": "^5.5.3"
   },
   "dependencies": {
-    "vanilla-calendar-pro": "^2.9.6"
+    "vanilla-calendar-pro": "^2.9.10"
   }
 }
