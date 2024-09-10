@@ -7,7 +7,9 @@ document.addEventListener('DOMContentLoaded', function() {
     type: 'multiple',
     settings: {
       range: {
-        disablePast: true,
+        disableAllDays: false,
+        disableGaps : true,
+        disabled: ['2024-09-18:2024-09-22','2024-09-25'],
       },
       selection: {
         day: 'multiple-ranged',
